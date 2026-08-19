@@ -21,7 +21,14 @@
     <main>
       <div class="toolbar">
         <span id="count"></span>
-        <span id="status"></span>
+        <div class="toolbar-right">
+          <div class="size-ctl">
+            <button type="button" data-size="s">小</button>
+            <button type="button" data-size="m" class="active">中</button>
+            <button type="button" data-size="l">大</button>
+          </div>
+          <span id="status"></span>
+        </div>
       </div>
       <div id="gallery" class="gallery"></div>
       <div id="empty" class="empty hidden">没有找到匹配的模型</div>

@@ -101,15 +101,52 @@ main {
 .toolbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: var(--muted);
   font-size: 13px;
   margin-bottom: 12px;
 }
 
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.size-ctl {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.size-ctl button {
+  padding: 5px 14px;
+  border: none;
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.size-ctl button + button { border-left: 1px solid var(--border); }
+.size-ctl button:hover { color: var(--text); }
+.size-ctl button.active { background: var(--accent); color: #fff; }
+
 .gallery {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.gallery.size-s {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.gallery.size-l {
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 18px;
+  gap: 20px;
 }
 
 .card {

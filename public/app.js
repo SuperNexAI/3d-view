@@ -17,8 +17,17 @@ const els = {
   empty: document.getElementById('empty'),
   lightbox: document.getElementById('lightbox'),
   lbImg: document.getElementById('lb-img'),
-  lbInfo: document.getElementById('lb-info')
+  lbInfo: document.getElementById('lb-info'),
+  sizeCtl: document.querySelector('.size-ctl')
 };
+
+function applySize(size) {
+  state.size = size;
+  els.gallery.classList.remove('size-s', 'size-m', 'size-l');
+  els.gallery.classList.add('size-' + size);
+  els.sizeCtl.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b.dataset.size === size));
+  localStorage.setItem('thumbSize', size);
+}
 
 function escapeHtml(str) {
   return String(str)
@@ -234,6 +243,11 @@ function bindEvents() {
     if (card) openLightbox(card);
   });
 
+  els.sizeCtl.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (btn) applySize(btn.dataset.size);
+  });
+
   els.lightbox.querySelector('.lb-close').addEventListener('click', closeLightbox);
   els.lightbox.querySelector('.lb-backdrop').addEventListener('click', closeLightbox);
   document.addEventListener('keydown', (e) => {
@@ -244,6 +258,7 @@ function bindEvents() {
 async function init() {
   try {
     els.status.textContent = '正在加载索引…';
+    applySize(localStorage.getItem('thumbSize') || 'm');
     await loadIndex();
     renderFolders();
     renderGallery();
