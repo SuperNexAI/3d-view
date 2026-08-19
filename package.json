@@ -1,0 +1,15 @@
+{
+  "name": "model-thumb-gallery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "本地 3D 模型缩略图浏览器",
+  "scripts": {
+    "start": "node server/index.js",
+    "export": "node server/export-static.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "jszip": "^3.10.1",
+    "three": "^0.169.0"
+  }
+}
